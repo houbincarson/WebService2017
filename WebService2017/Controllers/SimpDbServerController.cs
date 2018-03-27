@@ -14,15 +14,17 @@ namespace WebService2017.Controllers
     public class SimpDbServerController : ApiController
     {
         public static readonly SimpDbServer SimpDbServer = new SimpDbServer();
-        //[HttpPost]
-        //public string DataRequest_By_String(dynamic methodRequests)
-        //{
-        //    if (string.IsNullOrEmpty(methodRequests.ToString()))
-        //    {
-        //        return "";
-        //    }
-        //    return SimpDbServer.DataRequest_By_String(methodRequests.ToString());
-        //}
+
+        [HttpPost]
+        [ActionName("DataRequest_By_String")]
+        public string DataRequest_By_String(dynamic methodRequests)
+        {
+            if (string.IsNullOrEmpty(methodRequests.ToString()))
+            {
+                return "";
+            }
+            return SimpDbServer.DataRequest_By_String(methodRequests.ToString());
+        }
       
         [HttpPost]
         [ActionName("DataRequest_By_DataTable")]
@@ -35,25 +37,29 @@ namespace WebService2017.Controllers
             return SimpDbServer.DataRequest_By_DataTable(methodRequests.ToString());
         }
         [HttpPost]
-        [ActionName("DataRequest_By_SimpDataEnterys")]
-        public SimpDataEnterys DataRequest_By_SimpDataEnterys(dynamic methodRequests)
+        [ActionName("DataRequest_By_JsonString")]
+        public string DataRequest_By_JsonString(dynamic methodRequests)
         {
-            return SimpDbServer.DataRequest_By_SimpDataEnterys(methodRequests.ToString());
+            return SimpDbServer.DataRequest_By_JsonString(methodRequests.ToString());
         }
-        //[HttpPost]
-        //public string DataRequest_By_SimpDEs(string methodRequests)
-        //{
-        //    return SimpDbServer.DataRequest_By_SimpDEs(methodRequests);
-        //}
-        //[HttpPost]
-        //public byte[] DataRequest_By_SimpDEs_GZip(string methodRequests)
-        //{
-        //    return SimpDbServer.DataRequest_By_SimpDEs_GZip(methodRequests);
-        //}
-        //[HttpPost]
-        //public byte[] DataRequest_By_SimpDEs_All_GZip(byte[] methodBts)
-        //{
-        //    return SimpDbServer.DataRequest_By_SimpDEs_All_GZip(methodBts);
-        //}
+
+        [HttpPost]
+        [ActionName("DataRequest_By_SimpDEs")]
+        public string DataRequest_By_SimpDEs(string methodRequests)
+        {
+            return SimpDbServer.DataRequest_By_SimpDEs(methodRequests);
+        }
+        [HttpPost]
+        [ActionName("DataRequest_By_SimpDEs_GZip")]
+        public byte[] DataRequest_By_SimpDEs_GZip(string methodRequests)
+        {
+            return SimpDbServer.DataRequest_By_SimpDEs_GZip(methodRequests);
+        }
+        [HttpPost]
+        [ActionName("DataRequest_By_SimpDEs_All_GZip")]
+        public byte[] DataRequest_By_SimpDEs_All_GZip(byte[] methodBts)
+        {
+            return SimpDbServer.DataRequest_By_SimpDEs_All_GZip(methodBts);
+        }
     }
 }

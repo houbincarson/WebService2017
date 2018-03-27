@@ -49,7 +49,6 @@ namespace WebServiceLib
         {
             var metodReq = CreateJsonSerial().Deserialize<MethodRequest>(methodRequests);
             var sh = new ShareSqlManager();
-            var simpEtys = new List<SimpDataEnterys>();
             var lis = (List<SimpDataEntery>)sh.ExecStoredProc(metodReq.ProceName, metodReq.ParamKeys, metodReq.ParamVals, metodReq.ProceDb, RetType.SimpDEs);
             var sim = new SimpDataEnterys
             {
@@ -92,6 +91,14 @@ namespace WebServiceLib
             var jsonSimpEtys = DataRequest_By_SimpDEs(Encoding.UTF8.GetString(metBts));
             var bts = Encoding.UTF8.GetBytes(jsonSimpEtys);
             return GZipStreamHelper.GZipCompress(bts);
+        }
+
+
+        public string DataRequest_By_JsonString(string methodRequests)
+        {
+            var metodReq = CreateJsonSerial().Deserialize<MethodRequest>(methodRequests);
+            var sh = new ShareSqlManager();
+            return sh.ExecStoredProc(metodReq.ProceName, metodReq.ParamKeys, metodReq.ParamVals, metodReq.ProceDb, RetType.Json).ToString();
         }
     }
 }

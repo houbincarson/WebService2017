@@ -95,7 +95,7 @@ namespace WebApiClient
         {
             try
             {
-                var url = "http://localhost:7131/api/SimpDbServer/DataRequest_By_SimpDataEnterys";
+                var url = "http://localhost:7131/api/SimpDbServer/DataRequest_By_JsonString";
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);    //创建一个请求示例
 
                 request.ContentType = "application/json";
@@ -116,10 +116,7 @@ namespace WebApiClient
                 Stream responseStream = response.GetResponseStream();
                 StreamReader streamReader = new StreamReader(responseStream, Encoding.UTF8);
                 string result = streamReader.ReadToEnd();
-                var si = JObject.Parse(result);
-                var sim = si["ListSimpDEs"].ToObject<SimpDataEntery>();
                 this.textBox1.Text = result;
-                this.dataGridView1.DataSource = sim.Rows;
                 //this.dataGridView1.DataSource = JsonHelper.JsonToDataSet(result).Tables[0];
             }
             catch (Exception)
